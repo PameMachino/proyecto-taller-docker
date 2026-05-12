@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    environment:
+      POSTGRES_USER: ${DB_USER:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-pass123}
+      POSTGRES_DB: ${DB_NAME:-proyectodb}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d proyectodb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - back-network
+
+  api-nestjs:
+    build: ./backend-nestjs
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - back-network
+      - front-network
+
+  api-python:
+    build: ./backend-fastapi
+    depends_on:
+      - db
+    networks:
+      - back-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    networks:
+      - front-network
+
+networks:
+  back-network:
+  front-network:
+
+volumes:
+  db_data:
