@@ -14,9 +14,12 @@ Para levantar el proyecto completo por primera vez o después de realizar cambio
 
 ```bash
 docker compose up --build
+```
 
-Si las imágenes ya fueron construidas previamente y no se han realizado cambios en la configuración, puede iniciar el sistema más rápido con::
-`docker compose up`
+Si las imágenes ya fueron construidas previamente y no se han realizado cambios en la configuración, puede iniciar el sistema más rápido con:
+```bash
+docker compose up
+```
 
 Una vez levantado, puede acceder al frontend en:
 http://localhost:3000
