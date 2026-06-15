@@ -1,0 +1,30 @@
+# Python - Entornos virtuales
+venv/
+.venv/
+env/
+
+# Python - Archivos compilados y temporales
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Configuración local de FastAPI y OSMnx (Mapas)
+backend-fastapi/cache/
+.pytest_cache/
+
+# Variables de entorno 
+.env
+.env.local
+.env.*
+
+# Node.js - Dependencias y compilados (Para NestJS y Frontend)
+node_modules/
+dist/
+.next/
+.nuxt/
+
+# Archivos del sistema operativo o editores
+.DS_Store
+Thumbs.db
+.vscode/
